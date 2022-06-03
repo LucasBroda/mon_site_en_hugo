@@ -1,0 +1,28 @@
+{{ define "main" }}
+<section class="section">
+<article>
+    {{ .PublishDate.Format "2 January, 2006" }}
+    {{ with .Site.Params.authorImage }}
+    <div>
+    <img src="{{ . }}" />
+    </div>
+   
+    {{ end }}
+    {{ .Site.Params.Author }}
+
+    <div class="columns is-centered">
+        <div class="column max-800px">
+        <h1 class="title is-1">{{ .Title }}</h1>
+        <div class="content">
+        {{ .Content }}
+        </div>
+        </div>
+        </div>
+        </article>
+        </section>
+        {{ end }}
+        {{ range $idx, $category := .Params.categories }}
+        {{- if ne $idx 0 }}, {{ end }}<a href="{{ "categories/" | relURL }}{{ $category | urlize }}">
+        {{ $category }}
+        </a>
+        {{- end }}
